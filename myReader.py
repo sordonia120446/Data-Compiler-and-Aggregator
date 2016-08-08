@@ -3,6 +3,8 @@ Reads in a csv file.  Also has the option to filter out by time some
 of the transient data.  Finally, it groups by run and outputs the 
 mean value of the attribute of interest per run.  
 
+Requires venv to run pandas.  
+
 @author Sam O.  
 
 Created on 4/1/2016.  
@@ -50,6 +52,10 @@ def iterate_over_files(path):
 
 """
 Driver:  
+
+Specify how much transient [sec] need to be filtered out.  
+Name the attribute(s).  For >1 attribute, make an array.  
+Outputs aggregate data into output.csv.  
 """
 time_delay = 4
 attribute = "Source Power"
@@ -58,10 +64,10 @@ path = os.getcwd() + "/raw_data"
 my_files = iterate_over_files(path)
 print(my_files)
 
-# my_df = open_csvfile()
-# modified_df = remove_transient(my_df,time_delay)
-# stuff = average_by_run(modified_df,attribute)
-# stuff.to_csv("output.csv")
+my_df = open_csvfile()
+modified_df = remove_transient(my_df,time_delay)
+stuff = average_by_run(modified_df,attribute)
+stuff.to_csv("output.csv")
 
 
 
